@@ -2,7 +2,7 @@ console.log(window.Telegram)
 window.Telegram.WebApp.requestFullscreen()
 function buttonPress(button) {
     button.classList.toggle("active")
-    testButton.innerHTML = window.Telegram.WebApp.contentSafeAreaInset.top + "<br>" + window.Telegram.WebApp.safeAreaInset.top
+    testButton.innerHTML = "1<br>" + window.Telegram.WebApp.contentSafeAreaInset.top + "<br>" + window.Telegram.WebApp.safeAreaInset.top
 }
 var grid = document.querySelector(".grid")
 var gridElements = grid.getElementsByTagName('div')
