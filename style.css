@@ -1,7 +1,9 @@
 body {
     width: 100% !important;
+    background-color: #1a1a1a;
     overflow: hidden;
     margin: 0;
+    padding-top: 15px;
 }
 
 .grid {
@@ -9,15 +11,36 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    padding: 15px;
     align-items: center;
 }
 
 .grid > div {
+    transition: all .2s;
     display: flex;
-    width: 200px;
+    position: relative;
+    width: min(100%, 400px);
     height: 50px;
     background-color: #e7e7e7;
     border-radius: 25px;
     align-items: center;
     justify-content: center;
+}
+.grid > div::after {
+    transition: all .2s;
+    content: '';
+    display: block;
+    position: absolute;
+    right: 15px;
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+    border: 2px solid black;
+    background-image: linear-gradient(white, white), linear-gradient(white, white);
+    background-clip: content-box, border-box;
+}
+
+.grid > div.active::after {
+    transition: all .2s;
+    background-image: linear-gradient(green, green), linear-gradient(white, white);
 }
