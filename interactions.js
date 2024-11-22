@@ -1,5 +1,5 @@
 console.log(window.Telegram)
-window.Telegram.WebApp.requestFullscreen()
+/*window.Telegram.WebApp.requestFullscreen()*/
 function buttonPress(button) {
     button.classList.toggle("active")
     testButton.innerHTML = "1<br>" + window.Telegram.WebApp.contentSafeAreaInset.top + "<br>" + window.Telegram.WebApp.safeAreaInset.top
