@@ -23,10 +23,14 @@ async function confirmPress() {
         chat_id : channelId,
         text : JSON.stringify({
             username:user.username,
-            checks:checks
+            checks
         })})
     } else {
-        console.log("not in Telegram")
+        console.log({
+            username:"not in Telegram",
+            checks,
+            date
+        })
     }
 }
 
