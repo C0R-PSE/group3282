@@ -18,11 +18,17 @@ async function buttonPress(button) {
 var date = new Date().toISOString()
 date = date.slice(0, date.indexOf("T"))
 async function confirmPress() { 
-    await sendRequest("editMessageText", {
+    if (user) {
+    await sendRequest("sendMessage", {
         chat_id : channelId,
-        message_id : JournalMessage.message_id,
-        text : JSON.stringify(Journal)
-})}
+        text : JSON.stringify({
+            username:user.username,
+            checks:checks
+        })})
+    } else {
+        console.log("not in Telegram")
+    }
+}
 
 
 console.log(window.Telegram)
