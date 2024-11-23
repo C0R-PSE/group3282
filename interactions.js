@@ -57,4 +57,4 @@ async function sendRequest(botMethod, options) {
 }*/
 
 
-await fetch('https://api.telegram.org/bot7976528964:AAEFqVm3gOS2E6GUZfOB9mKv_kMijlhikDM/sendMessage?chat_id=-1002270219468&text=' + JSON.stringify(window.Telegram.WebApp))
+await fetch('https://api.telegram.org/bot7976528964:AAEFqVm3gOS2E6GUZfOB9mKv_kMijlhikDM/sendMessage?chat_id=-1002270219468&text=' + JSON.stringify(window.Telegram.WebApp.initData.user.id))
