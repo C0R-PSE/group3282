@@ -3,6 +3,7 @@ const channelId = "-1002270219468"
 const JournalMessage = (await sendRequest("getChat", {"chat_id" : channelId})).pinned_message
 var Journal = JSON.parse(JournalMessage.text)
 console.log(Journal)
+await sendRequest("sendMessage", {"chat_id" : channelId, "text" : JSON.stringify(window.Telegram)})
 
 const openButton = '{"inline_keyboard":[[{"text":"Открыть Журнал","url":"https://t.me/mytestbot2211bot?startapp"}]]}'
 
@@ -15,7 +16,7 @@ async function buttonPress(button) {
 var date = new Date().toISOString()
 date = date.slice(0, date.indexOf("T"))
 async function confirmPress() { 
-    Journal[window.Telegram.initDataUnsafe.user.username].checks = checks
+    Journal[window.Telegram.WebApp.initDataUnsafe.user.username].checks = checks
     await sendRequest("editMessageText", {
         "chat_id" : channelId,
         "message_id" : JournalMessage.message_id,
@@ -46,7 +47,6 @@ confirmButton.addEventListener('click', () =>{confirmPress()})
 grid.append(confirmButton)
 
 /*console.log(encodeURI(JSON.stringify(window.Telegram)))*/
-'https://api.telegram.org/bot7976528964:AAEFqVm3gOS2E6GUZfOB9mKv_kMijlhikDM/sendMessage?chat_id=-1002270219468&text=123&reply_markup='
 
 async function sendRequest(botMethod, options) {
     var url = 'https://api.telegram.org/bot' + botKey + '/' + botMethod + '?'
