@@ -58,6 +58,6 @@ async function sendRequest(botMethod, options) {
             url += options[i]
         }
     }
-    var data = await fetch(encodeURI(url)).then(resp => resp.json())
+    var data = await fetch(url).then(resp => resp.json())
     return data.result
 }
