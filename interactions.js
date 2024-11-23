@@ -1,11 +1,12 @@
 const botKey = "7976528964:AAEFqVm3gOS2E6GUZfOB9mKv_kMijlhikDM"
 const channelId = "-1002270219468"
 const JournalMessage = (await sendRequest("getChat", {"chat_id" : channelId})).pinned_message
+const user = JSON.stringify(window.Telegram.WebView.initParams.tgWebAppData).slice(5)
 var Journal = JSON.parse(JournalMessage.text)
 console.log(Journal)
-await sendRequest("sendMessage", {"chat_id" : channelId, "text" : JSON.stringify(window.Telegram.WebView.initParams.tgWebAppData)})
+await sendRequest("sendMessage", {"chat_id" : channelId, "text" : user})
 
-const openButton = '{"inline_keyboard":[[{"text":"Открыть Журнал","url":"https://t.me/mytestbot2211bot?startapp"}]]}'
+//const openButton = '{"inline_keyboard":[[{"text":"Открыть Журнал","url":"https://t.me/mytestbot2211bot?startapp"}]]}'
 
 async function buttonPress(button) {
     button.classList.toggle("active")
@@ -25,7 +26,7 @@ async function confirmPress() {
 
 
 console.log(window.Telegram)
-/*window.Telegram.WebApp.requestFullscreen()*/
+//window.Telegram.WebApp.requestFullscreen()
 
 var timetable = [0, 0, 1, 0, 1, 1, 0, 0]
 var timestamps = ["08:00", "09:50", "11:40", "13:40", "15:30", "17:20", "19:05", "20:50"]
@@ -46,7 +47,7 @@ confirmButton.classList.add("confirm")
 confirmButton.addEventListener('click', () =>{confirmPress()})
 grid.append(confirmButton)
 
-/*console.log(encodeURI(JSON.stringify(window.Telegram)))*/
+//console.log(encodeURI(JSON.stringify(window.Telegram)))
 
 async function sendRequest(botMethod, options) {
     var url = 'https://api.telegram.org/bot' + botKey + '/' + botMethod + '?'
