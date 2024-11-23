@@ -1,4 +1,4 @@
-function buttonPress(button) {
+async function buttonPress(button) {
     button.classList.toggle("active")
 }
 
