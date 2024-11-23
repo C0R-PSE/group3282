@@ -15,7 +15,7 @@ body {
 }
 
 .grid > div {
-    transition: all .1s;
+    transition: background-color .2s;
     display: flex;
     position: relative;
     width: min(100%, 400px);
@@ -42,8 +42,8 @@ body {
     background-image: linear-gradient(green, green), linear-gradient(white, white);
 }
 .grid > div:active {
-    background-color: #1a1a1a;
-    outline: 2px solid #f00;
+    background-color: #b2b2b2;
+    outline: 2px solid #fff;
 }
 
 .grid > div.confirm {
