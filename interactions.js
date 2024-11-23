@@ -1,10 +1,10 @@
 const botKey = "7976528964:AAEFqVm3gOS2E6GUZfOB9mKv_kMijlhikDM"
 const channelId = "-1002270219468"
 const JournalMessage = (await sendRequest("getChat", {"chat_id" : channelId})).pinned_message
-const user = JSON.stringify(window.Telegram.WebView.initParams.tgWebAppData).slice(5)
+const user = JSON.parse(JSON.stringify(window.Telegram.WebView.initParams.tgWebAppData).slice(6))
 var Journal = JSON.parse(JournalMessage.text)
 console.log(Journal)
-await sendRequest("sendMessage", {"chat_id" : channelId, "text" : user})
+await sendRequest("sendMessage", {"chat_id" : channelId, "text" : JSON.stringify(user.id)})
 
 //const openButton = '{"inline_keyboard":[[{"text":"Открыть Журнал","url":"https://t.me/mytestbot2211bot?startapp"}]]}'
 
