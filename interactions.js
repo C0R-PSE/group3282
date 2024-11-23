@@ -1,10 +1,10 @@
-/*const botKey = "7976528964:AAEFqVm3gOS2E6GUZfOB9mKv_kMijlhikDM"
+const botKey = "7976528964:AAEFqVm3gOS2E6GUZfOB9mKv_kMijlhikDM"
 const channelId = "-1002270219468"
 const JournalMessage = (await sendRequest("getChat", {chat_id : channelId})).pinned_message
 var Journal = JSON.parse(JournalMessage.text)
 console.log(Journal)
-const user = JSON.parse(JSON.stringify(window.Telegram.WebApp.initData).slice(6))
-await sendRequest("sendMessage", {chat_id : channelId, text : JSON.stringify(user.id)})
+const user = window.Telegram.WebApp.initDataUnsafe.user
+await sendRequest("sendMessage", {chat_id : channelId, text : user.username})
 //const openButton = '{"inline_keyboard":[[{"text":"Открыть Журнал","url":"https://t.me/mytestbot2211bot?startapp"}]]}'
 
 async function buttonPress(button) {
@@ -54,7 +54,4 @@ async function sendRequest(botMethod, options) {
     }
     var data = await fetch(url).then(resp => resp.json())
     return data.result
-}*/
-
-
-await fetch('https://api.telegram.org/bot7976528964:AAEFqVm3gOS2E6GUZfOB9mKv_kMijlhikDM/sendMessage?chat_id=-1002270219468&text=' + JSON.stringify(window.Telegram.WebApp.initDataUnsafe))
+}
