@@ -3,7 +3,7 @@ const channelId = "-1002270219468"
 const JournalMessage = (await sendRequest("getChat", {chat_id : channelId})).pinned_message
 var Journal = JSON.parse(JournalMessage.text)
 console.log(Journal)
-await sendRequest("sendMessage", {chat_id : channelId, text : JSON.stringify(window.Telegram.WebApp)})
+await sendRequest("sendMessage", {chat_id : channelId, text : JSON.stringify(window.Telegram.WebApp.initData)})
 //const openButton = '{"inline_keyboard":[[{"text":"Открыть Журнал","url":"https://t.me/mytestbot2211bot?startapp"}]]}'
 
 async function buttonPress(button) {
