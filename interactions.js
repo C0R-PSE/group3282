@@ -51,12 +51,7 @@ grid.append(confirmButton)
 async function sendRequest(botMethod, options) {
     var url = 'https://api.telegram.org/bot' + botKey + '/' + botMethod + '?'
     for (var i in options) {
-        url += "&" + i + "="
-        if (typeof(options[i]) == "object") {
-            url += JSON.stringify(options[i])
-        } else {
-            url += options[i]
-        }
+        url += "&" + i + "=" + options[i]
     }
     var data = await fetch(url).then(resp => resp.json())
     return data.result
