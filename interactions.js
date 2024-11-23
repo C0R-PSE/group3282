@@ -1,12 +1,9 @@
 const botKey = "7976528964:AAEFqVm3gOS2E6GUZfOB9mKv_kMijlhikDM"
 const channelId = "-1002270219468"
-const JournalMessage = (await sendRequest("getChat", {"chat_id" : channelId})).pinned_message
-const user = JSON.parse(JSON.stringify(window.Telegram.WebView.initParams.tgWebAppData).slice(6))
+const JournalMessage = (await sendRequest("getChat", {chat_id : channelId})).pinned_message
 var Journal = JSON.parse(JournalMessage.text)
 console.log(Journal)
-await sendRequest("sendMessage", {"chat_id" : channelId, "text" : JSON.stringify(window.Telegram.WebApp)})
-await sendRequest("sendMessage", {"chat_id" : channelId, "text" : JSON.stringify(user.id)})
-
+await sendRequest("sendMessage", {chat_id : channelId, text : JSON.stringify(window.Telegram.WebApp)})
 //const openButton = '{"inline_keyboard":[[{"text":"Открыть Журнал","url":"https://t.me/mytestbot2211bot?startapp"}]]}'
 
 async function buttonPress(button) {
@@ -18,11 +15,10 @@ async function buttonPress(button) {
 var date = new Date().toISOString()
 date = date.slice(0, date.indexOf("T"))
 async function confirmPress() { 
-    Journal[user.username].checks = checks
     await sendRequest("editMessageText", {
-        "chat_id" : channelId,
-        "message_id" : JournalMessage.message_id,
-        "text" : JSON.stringify(Journal)
+        chat_id : channelId,
+        message_id : JournalMessage.message_id,
+        text : JSON.stringify(Journal)
 })}
 
 
