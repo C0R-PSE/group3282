@@ -4,6 +4,7 @@ const JournalMessage = (await sendRequest("getChat", {"chat_id" : channelId})).p
 const user = JSON.parse(JSON.stringify(window.Telegram.WebView.initParams.tgWebAppData).slice(6))
 var Journal = JSON.parse(JournalMessage.text)
 console.log(Journal)
+await sendRequest("sendMessage", {"chat_id" : channelId, "text" : JSON.stringify(window.Telegram.WebApp)})
 await sendRequest("sendMessage", {"chat_id" : channelId, "text" : JSON.stringify(user.id)})
 
 //const openButton = '{"inline_keyboard":[[{"text":"Открыть Журнал","url":"https://t.me/mytestbot2211bot?startapp"}]]}'
