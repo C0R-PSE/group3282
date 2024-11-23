@@ -15,6 +15,7 @@ body {
 }
 
 .grid > div {
+    transition: all .1s;
     display: flex;
     position: relative;
     width: min(100%, 400px);
@@ -24,7 +25,7 @@ body {
     align-items: center;
     justify-content: center;
 }
-.grid > div::after {
+.grid > div:not(.confirm)::after {
     content: '';
     display: block;
     position: absolute;
@@ -39,4 +40,12 @@ body {
 
 .grid > div.active::after {
     background-image: linear-gradient(green, green), linear-gradient(white, white);
+}
+.grid > div:active {
+    background-color: #1a1a1a;
+    outline: 2px solid #f00;
+}
+
+.grid > div.confirm {
+    margin-top: 25px;
 }
