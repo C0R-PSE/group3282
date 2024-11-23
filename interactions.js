@@ -18,7 +18,7 @@ async function buttonPress(button) {
 var date = new Date().toISOString()
 date = date.slice(0, date.indexOf("T"))
 async function confirmPress() { 
-    Journal[window.Telegram.WebView.initParams.tgWebAppData.user.username].checks = checks
+    Journal[user.username].checks = checks
     await sendRequest("editMessageText", {
         "chat_id" : channelId,
         "message_id" : JournalMessage.message_id,
