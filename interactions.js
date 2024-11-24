@@ -4,9 +4,6 @@ const JournalMessage = (await sendRequest("getChat", {chat_id : channelId})).pin
 var Journal = JSON.parse(JournalMessage.text)
 console.log(Journal)
 const user = window.Telegram.WebApp.initDataUnsafe.user
-if (user) {
-    await sendRequest("sendMessage", {chat_id : channelId, text : user.username})
-}
 //const openButton = '{"inline_keyboard":[[{"text":"Открыть Журнал","url":"https://t.me/mytestbot2211bot?startapp"}]]}'
 
 async function buttonPress(button) {
