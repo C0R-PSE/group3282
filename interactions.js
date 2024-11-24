@@ -1,4 +1,4 @@
-const botKey = "7976528964:AAEFqVm3gOS2E6GUZfOB9mKv_kMijlhikDM"
+const botKey = "8101030731:AAEL3fG6Pj17wmsxx2NGM7HRWZ-lJybivaw"
 const channelId = "-1002270219468"
 const JournalMessage = (await sendRequest("getChat", {chat_id : channelId})).pinned_message
 var Journal = JSON.parse(JournalMessage.text)
