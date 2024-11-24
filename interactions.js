@@ -1,8 +1,9 @@
+
+
 const botKey = "8101030731:AAEL3fG6Pj17wmsxx2NGM7HRWZ-lJybivaw"
 const channelId = "-1002270219468"
-const JournalMessage = (await sendRequest("getChat", {chat_id : channelId})).pinned_message
-var Journal = JSON.parse(JournalMessage.text)
-console.log(Journal)
+//const JournalMessage = (await sendRequest("getChat", {chat_id : channelId})).pinned_message
+//var Journal = JSON.parse(JournalMessage.text)
 const user = window.Telegram.WebApp.initDataUnsafe.user
 //const openButton = '{"inline_keyboard":[[{"text":"Открыть Журнал","url":"https://t.me/mytestbot2211bot?startapp"}]]}'
 
@@ -64,3 +65,9 @@ async function sendRequest(botMethod, options) {
     var data = await fetch(url).then(resp => resp.json())
     return data.result
 }
+
+var response = await fetch('https://evstakhii.d-b-17f.workers.dev/', {
+    method: 'POST',
+    body: "123"
+}).then(resp => resp.json());
+console.log(response)
