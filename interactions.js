@@ -10,10 +10,8 @@ async function buttonPress(button) {
     button.classList.toggle("active")
     var pos = timestamps.indexOf(button.innerText)
     checks[pos] = 1 - checks[pos]
-    if (platformCheck) {confirmButton.classList.add("enabled")}
+    if (platformCheck && checks != checks1) {confirmButton.classList.add("enabled")}
 }
-var date = new Date().toISOString()
-date = date.slice(0, date.indexOf("T"))
 async function confirmPress(event) { 
     await fetch('https://evstakhii.d-b-17f.workers.dev/', {
         method: 'POST',
@@ -27,8 +25,6 @@ async function confirmPress(event) {
     event.target.classList.remove("enabled")
 }
 
-
-console.log(window.Telegram)
 //window.Telegram.WebApp.requestFullscreen()
 
 var timetable = await fetch('https://evstakhii.d-b-17f.workers.dev/', {
@@ -40,7 +36,8 @@ var timetable = await fetch('https://evstakhii.d-b-17f.workers.dev/', {
 }).then(resp => resp.json());
 
 var timestamps = ["08:00", "09:50", "11:40", "13:40", "15:30", "17:20", "19:05", "20:50"]
-var checks = [0, 0, 0, 0, 0, 0, 0, 0]
+var checks1 = [0, 0, 0, 0, 0, 0, 0, 0]
+var checks = checks1
 
 var grid = document.querySelector(".grid")
 for (let i = 0; i < 8; i++) {
