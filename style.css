@@ -42,7 +42,7 @@ body {
     background-clip: content-box, border-box;
 }
 
-.grid > div.active::after {
+.grid > div:not(.confirm):not(.notif).active::after {
     background-image: linear-gradient(green, green), linear-gradient(white, white);
 }
 .grid > div:active, 

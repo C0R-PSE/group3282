@@ -8,7 +8,7 @@ if (platformCheck) {
     user = window.Telegram.WebApp.initDataUnsafe.user
 } else {
     user = {
-        id: 123,
+        id: 1307263371,
         username: "i_corpse_i"
     }
 }
