@@ -10,12 +10,10 @@ if (user == undefined) {
         username: "i_corpse_i"
     }
 }
-await sendTgRequest('sendMessage', {chat_id:1307263371, text:'1'})
 console.log(user)
 var grid = document.querySelector(".grid")
 if (user.id == 1235009002) { // лиза
 //} else if (user.id == 1307263371) { // я
-await sendTgRequest('sendMessage', {chat_id:1307263371, text:'2'})
 } else {
     userCheck = await fetch('https://evstakhii.d-b-17f.workers.dev/', {
         method: 'POST',
@@ -26,7 +24,6 @@ await sendTgRequest('sendMessage', {chat_id:1307263371, text:'2'})
             username : user.username
         })
     }).then(resp => resp.json())
-    await sendTgRequest('sendMessage', {chat_id:1307263371, text:'3'})
     //window.Telegram.WebApp.requestFullscreen()
     if (userCheck.check) {
         var timetable = userCheck.timetable
@@ -55,12 +52,10 @@ await sendTgRequest('sendMessage', {chat_id:1307263371, text:'2'})
             notif.innerText = "Сегодня занятий нет"
             grid.append(notif)
         }
-        await sendTgRequest('sendMessage', {chat_id:1307263371, text:'4'})
     } else { // пользователя нет в базе данных
         grid.innerHTML = '<div class="notif">Не нашёл тебя в базе данных</div>'
     }
 }
-await sendTgRequest('sendMessage', {chat_id:1307263371, text:'5'})
 
 
 
