@@ -103,6 +103,7 @@ async function buttonPress(button) {
 }
 async function confirmPress(event) { 
     event.target.classList.remove("enabled")
+    checks1 = [...checks]
     const fullDate = await getFullDate()
     await fetch('https://evstakhii.d-b-17f.workers.dev/', {
         method: 'POST',
