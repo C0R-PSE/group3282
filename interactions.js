@@ -80,6 +80,7 @@ async function buttonPress(button) {
     }
 }
 async function confirmPress(event) { 
+    event.target.classList.remove("enabled")
     await fetch('https://evstakhii.d-b-17f.workers.dev/', {
         method: 'POST',
         body: JSON.stringify({
@@ -90,5 +91,4 @@ async function confirmPress(event) {
             checks
         })
     })
-    event.target.classList.remove("enabled")
 }
