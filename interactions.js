@@ -5,7 +5,7 @@ const channelId = "-1002270219468"
 const user = window.Telegram.WebApp.initDataUnsafe.user
 await sendRequest('sendMessage', {
     chat_id : "-1002270219468",
-    text : JSON.stringify(window.Telegram)
+    text : JSON.stringify(window.Telegram.WebApp.platform)
 })
 //const openButton = '{"inline_keyboard":[[{"text":"Открыть Журнал","url":"https://t.me/mytestbot2211bot?startapp"}]]}'
 
