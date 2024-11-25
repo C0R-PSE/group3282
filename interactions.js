@@ -1,12 +1,10 @@
 const botKey = "8101030731:AAEL3fG6Pj17wmsxx2NGM7HRWZ-lJybivaw"
 //const channelId = "-1002270219468"
 //const openButton = '{"inline_keyboard":[[{"text":"Открыть Журнал","url":"https://t.me/mytestbot2211bot?startapp"}]]}'
-const platformCheck = window.Telegram.WebApp.platform != "unknown"
-var user
+//const platformCheck = window.Telegram.WebApp.platform != "unknown"
+var user = window.Telegram.WebApp.initDataUnsafe.user
 var userCheck
-if (platformCheck) {
-    user = window.Telegram.WebApp.initDataUnsafe.user
-} else {
+if (user == undefined) {
     user = {
         id: 1307263371,
         username: "i_corpse_i"
