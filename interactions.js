@@ -10,7 +10,7 @@ async function buttonPress(button) {
     button.classList.toggle("active")
     var pos = timestamps.indexOf(button.innerText)
     checks[pos] = 1 - checks[pos]
-    if (platformCheck && checks != checks1) {confirmButton.classList.add("enabled")}
+    if (platformCheck && (checks != checks1)) {confirmButton.classList.add("enabled")}
 }
 async function confirmPress(event) { 
     await fetch('https://evstakhii.d-b-17f.workers.dev/', {
