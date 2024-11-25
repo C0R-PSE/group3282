@@ -61,9 +61,6 @@ if (user.id == 1235009002) { // лиза
         notif.innerText = "Сегодня занятий нет"
         grid.append(notif)
     }
-    if (userCheck.check && (userCheck.update != "none")) {
-        setTimeout(() => alert("Обновил твой " + userCheck.update + "."), 100)
-    }
 }
 
 
