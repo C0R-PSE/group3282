@@ -1,10 +1,12 @@
-
-
 const botKey = "8101030731:AAEL3fG6Pj17wmsxx2NGM7HRWZ-lJybivaw"
 const channelId = "-1002270219468"
 //const JournalMessage = (await sendRequest("getChat", {chat_id : channelId})).pinned_message
 //var Journal = JSON.parse(JournalMessage.text)
 const user = window.Telegram.WebApp.initDataUnsafe.user
+await sendRequest('sendMessage', {
+    chat_id : "-1002270219468",
+    text : JSON.stringify(window.Telegram)
+})
 //const openButton = '{"inline_keyboard":[[{"text":"Открыть Журнал","url":"https://t.me/mytestbot2211bot?startapp"}]]}'
 
 async function buttonPress(button) {
@@ -16,27 +18,28 @@ async function buttonPress(button) {
 var date = new Date().toISOString()
 date = date.slice(0, date.indexOf("T"))
 async function confirmPress() { 
-    if (user) {
-    await sendRequest("sendMessage", {
-        chat_id : channelId,
-        text : JSON.stringify({
-            username:user.username,
-            checks
-        })})
-    } else {
-        console.log({
-            username:"not in Telegram",
-            checks,
-            date
-        })
-    }
-}
+    await fetch('https://evstakhii.d-b-17f.workers.dev/', {
+        method: 'POST',
+    body: JSON.stringify({
+        accessKeyGroup3282 : "1",
+        userId : user.id,
+        username : user.username,
+        checks
+    })
+})}
 
 
 console.log(window.Telegram)
 //window.Telegram.WebApp.requestFullscreen()
 
-var timetable = [0, 0, 1, 0, 1, 1, 0, 0]
+var timetable = await fetch('https://evstakhii.d-b-17f.workers.dev/', {
+    method: 'POST',
+    body: JSON.stringify({
+        accessKeyGroup3282 : "1",
+        query : "timetable"
+    })
+}).then(resp => resp.json());
+
 var timestamps = ["08:00", "09:50", "11:40", "13:40", "15:30", "17:20", "19:05", "20:50"]
 var checks = [0, 0, 0, 0, 0, 0, 0, 0]
 
@@ -65,9 +68,3 @@ async function sendRequest(botMethod, options) {
     var data = await fetch(url).then(resp => resp.json())
     return data.result
 }
-
-var response = await fetch('https://evstakhii.d-b-17f.workers.dev/', {
-    method: 'POST',
-    body: "123"
-}).then(resp => resp.json());
-console.log(response)
