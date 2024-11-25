@@ -36,9 +36,12 @@ if (user.id == 1235009002) { // лиза
         var timetable = userCheck.timetable
         if (timetable.indexOf(1) >= 0) { // если пары есть
             
-            for (let i = 0; i < 8; i++) {
+            for (var i in timetable) {
                 if (timetable[i] == 1) {
                     var para = document.createElement("div")
+                    if (checks[i] == 1) {
+                        para.classList.add("active")
+                    }
                     para.innerText = timestamps[i]
                     para.addEventListener('click', (e) =>{buttonPress(e.target)})
                     grid.append(para)
