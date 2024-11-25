@@ -1,7 +1,5 @@
 const botKey = "8101030731:AAEL3fG6Pj17wmsxx2NGM7HRWZ-lJybivaw"
-const channelId = "-1002270219468"
-//const JournalMessage = (await sendRequest("getChat", {chat_id : channelId})).pinned_message
-//var Journal = JSON.parse(JournalMessage.text)
+//const channelId = "-1002270219468"
 const platformCheck = window.Telegram.WebApp.platform != "unknown"
 const user = window.Telegram.WebApp.initDataUnsafe.user
 //const openButton = '{"inline_keyboard":[[{"text":"Открыть Журнал","url":"https://t.me/mytestbot2211bot?startapp"}]]}'
@@ -38,32 +36,39 @@ var timetable = await fetch('https://evstakhii.d-b-17f.workers.dev/', {
         query : "timetable"
     })
 }).then(resp => resp.json());
-
-var timestamps = ["08:00", "09:50", "11:40", "13:40", "15:30", "17:20", "19:05", "20:50"]
-var checks1 = [0, 0, 0, 0, 0, 0, 0, 0]
-var checks = [...checks1]
-
 var grid = document.querySelector(".grid")
-for (let i = 0; i < 8; i++) {
-    if (timetable[i] == 1) {
-        var para = document.createElement("div")
-        para.innerText = timestamps[i]
-        para.addEventListener('click', (e) =>{buttonPress(e.target)})
-        grid.append(para)
+console.log(timetable)
+if (timetable.indexOf(1) >= 0) { // если пары есть
+    var timestamps = ["08:00", "09:50", "11:40", "13:40", "15:30", "17:20", "19:05", "20:50"]
+    var checks1 = [0, 0, 0, 0, 0, 0, 0, 0]
+    var checks = [...checks1]
+    
+    for (let i = 0; i < 8; i++) {
+        if (timetable[i] == 1) {
+            var para = document.createElement("div")
+            para.innerText = timestamps[i]
+            para.addEventListener('click', (e) =>{buttonPress(e.target)})
+            grid.append(para)
+        }
     }
+    var confirmButton = document.createElement("div")
+    confirmButton.innerText = "Отправить"
+    confirmButton.classList.add("confirm")
+    if (platformCheck) {
+        confirmButton.classList.add("enabled")
+        confirmButton.addEventListener('click', (e) =>{confirmPress(e)})
+    }
+    grid.append(confirmButton)
+} else { // если пар нет
+    var notif = document.createElement("div")
+    notif.classList.add("no_classes")
+    notif.innerText = "Сегодня занятий нет"
+    grid.append(notif)
 }
-var confirmButton = document.createElement("div")
-confirmButton.innerText = "Отправить"
-confirmButton.classList.add("confirm")
-if (platformCheck) {
-    confirmButton.classList.add("enabled")
-    confirmButton.addEventListener('click', (e) =>{confirmPress(e)})
-}
-grid.append(confirmButton)
 
 //console.log(encodeURI(JSON.stringify(window.Telegram)))
 
-async function sendRequest(botMethod, options) {
+async function sendTgRequest(botMethod, options) {
     var url = 'https://api.telegram.org/bot' + botKey + '/' + botMethod + '?'
     for (var i in options) {
         url += "&" + i + "=" + options[i]
