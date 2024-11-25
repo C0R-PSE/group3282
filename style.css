@@ -44,11 +44,18 @@ body {
 .grid > div.active::after {
     background-image: linear-gradient(green, green), linear-gradient(white, white);
 }
-.grid > div:active {
+.grid > div:active, 
+.grid > div.confirm.enabled:active {
     background-color: #b2b2b2;
     outline: 2px solid #fff;
 }
 
 .grid > div.confirm {
+    background-color: #7e7e7e;
+    pointer-events: none;
     margin-top: 25px;
+}
+.grid > div.confirm.enabled {
+    background-color: #e7e7e7;
+    pointer-events: all;
 }
