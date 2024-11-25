@@ -25,7 +25,7 @@ if (user.id == 1235009002) { // лиза
         })
     }).then(resp => resp.json())
     //window.Telegram.WebApp.requestFullscreen()
-    if (userCheck.check) {
+    if (userCheck.check) { // одногруппники
         var timetable = userCheck.timetable
         if (timetable.indexOf(1) >= 0) { // если пары есть
             var timestamps = ["08:00", "09:50", "11:40", "13:40", "15:30", "17:20", "19:05", "20:50"]
@@ -81,6 +81,18 @@ async function buttonPress(button) {
 }
 async function confirmPress(event) { 
     event.target.classList.remove("enabled")
+    const date = new Date()
+    var hours = ((date.getHours()+3)%24).toString()
+    if(hours.length == 1){hours = '0' + hours}
+    if (date.getHours() >= 21){
+      var dayDate = (date.getDate()+1).toString()
+    } else {
+      var dayDate = date.getDate().toString()
+    }
+    if(dayDate.length == 1){dayDate = '0' + dayDate}
+    var month = (date.getMonth()+1).toString()
+    if(month.length == 1){month = '0' + month}
+    const fullDate = dayDate + '.' + month
     await fetch('https://evstakhii.d-b-17f.workers.dev/', {
         method: 'POST',
         body: JSON.stringify({
@@ -88,7 +100,8 @@ async function confirmPress(event) {
             query : "check-in",
             userId : user.id,
             username : user.username,
-            checks
+            checks,
+            fullDate
         })
     })
 }
