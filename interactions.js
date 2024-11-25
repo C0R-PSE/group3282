@@ -1,48 +1,29 @@
 const botKey = "8101030731:AAEL3fG6Pj17wmsxx2NGM7HRWZ-lJybivaw"
 //const channelId = "-1002270219468"
+//const openButton = '{"inline_keyboard":[[{"text":"Открыть Журнал","url":"https://t.me/mytestbot2211bot?startapp"}]]}'
 const platformCheck = window.Telegram.WebApp.platform != "unknown"
-const user = window.Telegram.WebApp.initDataUnsafe.user
-if ((user != undefined) && (user.id == 1235009002)) { // лиза
+var user
+if (platformCheck) {
+    user = window.Telegram.WebApp.initDataUnsafe.user
+} else {
+    user = {
+        id: 123,
+        username: "abc"
+    }
+}
+
+if (user.id == 1235009002) { // лиза
 //} else if (user.id == 1307263371) { // я
 } else {
-    var userCheck = false
-    if (platformCheck) {
-        userCheck = await fetch('https://evstakhii.d-b-17f.workers.dev/', {
-            method: 'POST',
-            body: JSON.stringify({
-                accessKeyGroup3282 : "1",
-                query : "usercheck",
-                userId : user.id,
-                username : user.username
-            })
-        }).then(resp => resp.json())
-    }
-    //const openButton = '{"inline_keyboard":[[{"text":"Открыть Журнал","url":"https://t.me/mytestbot2211bot?startapp"}]]}'
-    
-    async function buttonPress(button) {
-        button.classList.toggle("active")
-        var pos = timestamps.indexOf(button.innerText)
-        checks[pos] = 1 - checks[pos]
-        if (platformCheck && (JSON.stringify(checks) != JSON.stringify(checks1))) {
-            confirmButton.classList.add("enabled")
-        } else {
-            confirmButton.classList.remove("enabled")
-        }
-    }
-    async function confirmPress(event) { 
-        await fetch('https://evstakhii.d-b-17f.workers.dev/', {
-            method: 'POST',
-            body: JSON.stringify({
-                accessKeyGroup3282 : "1",
-                query : "check-in",
-                userId : user.id,
-                username : user.username,
-                checks
-            })
+    var userCheck = await fetch('https://evstakhii.d-b-17f.workers.dev/', {
+        method: 'POST',
+        body: JSON.stringify({
+            accessKeyGroup3282 : "1",
+            query : "usercheck",
+            userId : user.id,
+            username : user.username
         })
-        event.target.classList.remove("enabled")
-    }
-    
+    }).then(resp => resp.json())
     //window.Telegram.WebApp.requestFullscreen()
     
     var timetable = await fetch('https://evstakhii.d-b-17f.workers.dev/', {
@@ -95,4 +76,27 @@ async function sendTgRequest(botMethod, options) {
     }
     var data = await fetch(url).then(resp => resp.json())
     return data.result
+}
+async function buttonPress(button) {
+    button.classList.toggle("active")
+    var pos = timestamps.indexOf(button.innerText)
+    checks[pos] = 1 - checks[pos]
+    if (platformCheck && (JSON.stringify(checks) != JSON.stringify(checks1))) {
+        confirmButton.classList.add("enabled")
+    } else {
+        confirmButton.classList.remove("enabled")
+    }
+}
+async function confirmPress(event) { 
+    await fetch('https://evstakhii.d-b-17f.workers.dev/', {
+        method: 'POST',
+        body: JSON.stringify({
+            accessKeyGroup3282 : "1",
+            query : "check-in",
+            userId : user.id,
+            username : user.username,
+            checks
+        })
+    })
+    event.target.classList.remove("enabled")
 }
