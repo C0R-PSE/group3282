@@ -3,19 +3,21 @@ const botKey = "8101030731:AAEL3fG6Pj17wmsxx2NGM7HRWZ-lJybivaw"
 //const openButton = '{"inline_keyboard":[[{"text":"Открыть Журнал","url":"https://t.me/mytestbot2211bot?startapp"}]]}'
 const platformCheck = window.Telegram.WebApp.platform != "unknown"
 var user
+var userCheck
 if (platformCheck) {
     user = window.Telegram.WebApp.initDataUnsafe.user
 } else {
     user = {
-        id: 123,
-        username: "abc"
+        id: 1307263371,
+        username: "i_corpse_i"
     }
 }
+console.log(user)
 
 if (user.id == 1235009002) { // лиза
 //} else if (user.id == 1307263371) { // я
 } else {
-    var userCheck = await fetch('https://evstakhii.d-b-17f.workers.dev/', {
+    userCheck = await fetch('https://evstakhii.d-b-17f.workers.dev/', {
         method: 'POST',
         body: JSON.stringify({
             accessKeyGroup3282 : "1",
@@ -34,7 +36,6 @@ if (user.id == 1235009002) { // лиза
         })
     }).then(resp => resp.json());
     var grid = document.querySelector(".grid")
-    console.log(timetable)
     if (timetable.indexOf(1) >= 0) { // если пары есть
         var timestamps = ["08:00", "09:50", "11:40", "13:40", "15:30", "17:20", "19:05", "20:50"]
         var checks1 = [0, 0, 0, 0, 0, 0, 0, 0]
@@ -51,16 +52,17 @@ if (user.id == 1235009002) { // лиза
         var confirmButton = document.createElement("div")
         confirmButton.innerText = "Отправить"
         confirmButton.classList.add("confirm")
-        if (platformCheck) {
-            confirmButton.classList.add("enabled")
-            confirmButton.addEventListener('click', (e) =>{confirmPress(e)})
-        }
+        confirmButton.classList.add("enabled")
+        confirmButton.addEventListener('click', (e) =>{confirmPress(e)})
         grid.append(confirmButton)
     } else { // если пар нет
         var notif = document.createElement("div")
         notif.classList.add("no_classes")
         notif.innerText = "Сегодня занятий нет"
         grid.append(notif)
+    }
+    if (userCheck.check && (userCheck.update != "none")) {
+        setTimeout(() => alert("Обновил твой " + userCheck.update + "."), 100)
     }
 }
 
@@ -81,7 +83,7 @@ async function buttonPress(button) {
     button.classList.toggle("active")
     var pos = timestamps.indexOf(button.innerText)
     checks[pos] = 1 - checks[pos]
-    if (platformCheck && (JSON.stringify(checks) != JSON.stringify(checks1))) {
+    if (JSON.stringify(checks) != JSON.stringify(checks1)) {
         confirmButton.classList.add("enabled")
     } else {
         confirmButton.classList.remove("enabled")
