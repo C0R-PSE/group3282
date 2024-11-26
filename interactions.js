@@ -18,6 +18,7 @@ var grid = document.querySelector(".grid")
 if (user.id == 1235009002) { // лиза
 //} else if (user.id == 1307263371) { // я
 } else {
+    console.log(1)
     userCheck = await fetch('https://evstakhii.d-b-17f.workers.dev/', {
         method: 'POST',
         body: JSON.stringify({
@@ -31,11 +32,12 @@ if (user.id == 1235009002) { // лиза
         checks1 = userCheck.checks
         checks = [...checks1]
     }
+    console.log(2)
     //window.Telegram.WebApp.requestFullscreen()
     if (userCheck.check) { // одногруппники
         var timetable = userCheck.timetable
+        console.log(3)
         if (timetable.indexOf(1) >= 0) { // если пары есть
-            
             for (var i in timetable) {
                 if (timetable[i] == 1) {
                     var para = document.createElement("div")
