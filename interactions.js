@@ -38,9 +38,9 @@ if (user.id == 1235009002) { // лиза
         var timetable = userCheck.timetable
         console.log(3)
         if (timetable.indexOf(1) >= 0) { // если пары есть
-            for (var i in timetable) {
+            for (let i in timetable) {
                 if (timetable[i] == 1) {
-                    var para = document.createElement("div")
+                    let para = document.createElement("div")
                     if (checks[i] == 1) {
                         para.classList.add("active")
                     }
@@ -49,12 +49,16 @@ if (user.id == 1235009002) { // лиза
                     grid.append(para)
                 }
             }
+            
             var confirmButton = document.createElement("div")
             confirmButton.innerText = "Отправить"
             confirmButton.classList.add("confirm")
             confirmButton.classList.add("enabled")
             confirmButton.addEventListener('click', (e) =>{confirmPress(e)})
             grid.append(confirmButton)
+            for (let i in [...grid.children]) {
+                gsap.from([...grid.children][i], {translateY: "50px", opacity:0, duration:.25, delay:.1*i})
+            }
         } else { // если пар нет
             var notif = document.createElement("div")
             notif.classList.add("notif")
