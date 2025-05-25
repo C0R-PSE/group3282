@@ -1,0 +1,101 @@
+body {
+  width: 100% !important;
+  background-color: #1a1a1a;
+  overflow: hidden;
+  margin: var(--tg-safe-area-inset-top), 0 0;
+  padding-top: 15px;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+  align-items: center;
+
+  &>.para {
+    position: relative;
+    box-sizing: border-box;
+    padding: 15px 50px 15px 15px;
+    border-radius: 25px;
+    width: min(100%, 300px);
+    height: 75px;
+    display: grid;
+    grid-template-columns: max-content max-content;
+    justify-content: left;
+    column-gap: 15px;
+    background-color: #e7e7e7;
+    font-size: 18px;
+    transition: background-color .2s;
+    -webkit-user-select: none;
+    user-select: none;
+    justify-items: start;
+    align-items: center;
+
+    .time {
+      font-size: 24px;
+    }
+
+    .name {
+      font-size: 18px;
+    }
+
+    .room,
+    .teacher {
+      font-size: 14px;
+    }
+
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      align-self: center;
+      right: 15px;
+      width: 20px;
+      height: 20px;
+      padding: 2px;
+      border: 2px solid black;
+      border-radius: 15px;
+      background-image: linear-gradient(white, white), linear-gradient(white, white);
+      background-clip: content-box, border-box;
+      box-sizing: border-box;
+    }
+
+    &.active::after {
+      background-image: linear-gradient(green, green), linear-gradient(white, white);
+    }
+  }
+
+  &>.confirm {
+    box-sizing: border-box;
+    background-color: #7e7e7e;
+    pointer-events: none;
+    margin-top: 25px;
+    width: min(100%, 300px);
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border-radius: 25px;
+
+    &.enabled {
+      background-color: #e7e7e7;
+      pointer-events: all;
+    }
+  }
+
+  &>.notif {
+    margin-top: 35px;
+    color: #e7e7e7;
+    font-style: italic;
+    font-size: 24px;
+  }
+}
+
+.grid>.para:active,
+.grid>.confirm.enabled:active {
+  background-color: #b2b2b2;
+  outline: 2px solid #fff;
+}
