@@ -8,7 +8,7 @@ const user = window.Telegram.WebApp.initDataUnsafe.user || {
   //id: 1235009002,
   //username: "manulzivnul"
 }
-console.log(user)
+//console.log(user)
 
 const url = 'https://evstakhii2-0.d-b-17f.workers.dev/'
 //'http://127.0.0.1:8787/'
@@ -69,7 +69,7 @@ async function buttonPress(button: HTMLDivElement) {
 async function confirmPress() {
   confirmButton.current.classList.remove("enabled")
   checks1 = [...checks]
-  console.log(checks)
+  //console.log(checks)
   await fetch(url, {
     method: 'POST',
     body: JSON.stringify({
@@ -104,15 +104,12 @@ function Lessons() {
   data = use(dataPromise) as Data
 
   useGSAP(() => {
-    const tl = gsap.timeline({ paused: true })
-    document.querySelectorAll('.grid > div:not(.notif)').forEach((e) => {
-      tl.from(e, {
-        y: 100,
-        opacity: 0,
-        duration: .25
-      }, "<0.1")
+    gsap.from('.grid > div:not(.notif)', {
+      y: 100,
+      opacity: 0,
+      duration: .25,
+      stagger: 0.1
     })
-    tl.play()
   })
   if (data.role === "unknown" || !data.timetable) {
     return <div className='notif'>Не нашёл тебя в списке</div>
@@ -124,7 +121,7 @@ function Lessons() {
         checks1 = data.checks!
         checks = [...checks1]
       }
-      console.log(checks)
+      //console.log(checks)
       const role = data.role
       return (
         <div className={`grid ${role}`}>
@@ -145,7 +142,7 @@ function LessonButton({ l, role, groupchecks, fulldate }: {
   }[], fulldate: string
 }) {
   const check = (checks) ? checks[timestamps.indexOf(l.start_time)] : 0
-  console.log(check)
+  //console.log(check)
   return (
     <div className={'para_wrapper' + ' active'.repeat(check)}>
       <div className='para'
