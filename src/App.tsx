@@ -23,8 +23,8 @@ const dataPromise = fetch(url, {
 }).then(resp => resp.json())
 
 const timestamps = ["08:00", "09:50", "11:40", "13:40", "15:30", "17:20", "19:05", "20:50"]
-let checks1: (0 | 1)[]
-let checks: (0 | 1)[]
+let checks1: (0 | 1)[] = [0, 0, 0, 0, 0, 0, 0, 0]
+let checks: (0 | 1)[] = [...checks1]
 let data: Data
 
 type Data = {
@@ -90,12 +90,12 @@ function App() {
   })
   return (
     <>
-      
-    <Suspense fallback={<img className='logo' alt=''
+
+      <Suspense fallback={<img className='logo' alt=''
         style={{ width: 200, height: 200, marginTop: 100 }}
         src='./logo.png' />}>
-      <Lessons />
-    </Suspense>
+        <Lessons />
+      </Suspense>
     </>
   );
 }
